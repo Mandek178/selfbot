@@ -51,8 +51,11 @@ const { webp2mp4File} = require('./lib/webp2mp4')
 const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
 const afk = JSON.parse(fs.readFileSync('./lib/off.json'))
 const { sleep, isAfk, cekafk, addafk } = require('./lib/offline')
-const ZeksApi = 'fznadmnapi'
-const TobzKey = 'BotWeA'
+
+//===== APIKEY DISINI =====//
+LolKey = 'c16336f947f389ae9254d4c3'
+ZeksApi = 'fznadmnapi'
+TobzKey = 'BotWeA'
 
 //======== SETTING  ========//
 banChats = true
@@ -65,8 +68,9 @@ numbernye = '0'
 waktu = '-'
 alasan = '-'
 
+
 //==============================================//
-const ownerNumber = [`${6283852242764}@s.whatsapp.net`] //gausah diganti
+const ownerNumber = [`${6285156724122}@s.whatsapp.net`] //gausah diganti
 //=================================================//
 module.exports = xynn = async (xynn, mek) => {
 	try {
@@ -111,14 +115,14 @@ module.exports = xynn = async (xynn, mek) => {
         const vcard = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
             + 'FN:Fauzan\n'
-            + 'ORG:Pengembang FznBotz;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=6283852242764:+6283852242764\n'
+            + 'ORG:Pengembang TeKaJeBOT;\n'
+            + 'TEL;type=CELL;type=VOICE;waid=6285156724122:+6285156724122\n'
             + 'END:VCARD'
 
 
         //MESS
 		mess = {
-			wait: 'Bentar cuk',
+			wait: 'WAIT...',
 			success: 'Berhasil!',
 			wrongFormat: 'Format salah, coba liat lagi di menu',
 			error: {
@@ -127,7 +131,10 @@ module.exports = xynn = async (xynn, mek) => {
 			},
 			only: {
 				group: 'Khusus grup ngab',
-				ownerb: 'Fitur ini khusus OWNER'
+				ownerb: 'Fitur ini khusus OWNER',
+				adming: 'fitur ini khusus admin grup',
+				adminb: 'fitur ini khusus admin bot',
+				ownadm: 'fitur ini khusu Owner/Admin grup'
 			}
 		}
 		const isUrl = (url) => {
@@ -303,6 +310,9 @@ Prefix : 「 MULTI-PREFIX 」
 ║┃ *${prefix}off*
 ║┃ *${prefix}on*
 ║┃ *${prefix}status*
+║┃ *${prefix}bc*
+║┃ *${prefix}bcgc*
+║┃ *${prefix}kick*
 ║┃
 ║┣━━⊱ *</MAKER>*
 ║┃ *${prefix}sticker*
@@ -398,11 +408,11 @@ Prefix : 「 MULTI-PREFIX 」
             fakestatus(bu)
             })   
             break    
-            case 'admin':
+            case 'pembuat':
             case 'owner':
             case 'creator':
                   xynn.sendMessage(from, {displayname: "Fauzan", vcard: vcard}, MessageType.contact, { quoted: mek})
-                  xynn.sendMessage(from, 'Tuh kontak fauzan ಠ ͜ʖ ಠ ,Jangan Lupa Save Ya :v',MessageType.text, { quoted: mek} )
+                  xynn.sendMessage(from, 'Tuh kontak ownerku ಠ ͜ʖ ಠ ,Jangan Lupa Save Ya :v',MessageType.text, { quoted: mek} )
                   xynn.sendMessage(from, MessageType.image, {quoted: mek, caption: '*INSTAGRAM:*\n*@efzyn_*'})
                   break
     case 'kontag':
@@ -775,7 +785,8 @@ Prefix : 「 MULTI-PREFIX 」
           	fakestatus(`「 *SELF-MODE* 」`)
           	break
  	case 'hidetag':
- 	  if (!isOwner) return reply(mess.only.ownerb)
+ 	  if (!isOwner) return reply(mess.only.ownadm)
+ 	  if (!isGroupAdmins) return reply(mess.only.ownadm)
 			if (!isGroup) return reply(mess.only.group)
 			var value = args.join(' ')
 			var group = await xynn.groupMetadata(from)
@@ -803,6 +814,7 @@ Prefix : 「 MULTI-PREFIX 」
 					break
 	case 'play':
 			if (args.length === 0) return reply(`Kirim perintah *${prefix}play* _Judul lagu yang akan dicari_`)
+			  fakegroup(mess.wait)
             var srch = args.join('')
     		aramas = await yts(srch);
     		aramat = aramas.all 
@@ -825,6 +837,7 @@ Prefix : 「 MULTI-PREFIX 」
                    break  
         case 'video':
             if (args.length === 0) return reply(`Kirim perintah *${prefix}video* _Judul lagu yang akan dicari_`)
+            fakegroup(mess.wait)
             var srch = args.join('')
             aramas = await yts(srch);
             aramat = aramas.all 
@@ -1323,6 +1336,8 @@ Prefix : 「 MULTI-PREFIX 」
             reply('kirim/reply gambar/video')
             }
             break	
+
+//============== OWNER ONLY ==============//
             case 'bc':
              if (!isOwner) return reply(mess.only.ownerb)
 				if (args.length < 1) return reply('pesannya mana?')
@@ -1343,6 +1358,47 @@ Prefix : 「 MULTI-PREFIX 」
 				reply('Suksess broadcast')
 				}
 			    break
+			    case 'bcgc':
+				if (!isGroup) return reply(mess.only.group)
+				if (!isOwner) return reply(mess.only.ownerb)
+				if (args.length < 1) return reply('pesannya mana?')
+				anu = await groupMembers
+				nom = anu.participant
+			    if (isMedia && !mek.message.videoMessage || isQuotedImage) {
+				const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(cok).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+				bufferzzz = await xynn.downloadMediaMessage(encmedia)
+				for (let _ of anu) {
+				xynn.sendMessage(_.jid, bufferzzz, image, {caption: `「 BC GROUP 」\n\nDari Grup : ${groupName}\nPengirim : wa.me/${(sender.split('@')[0])}\nPesan : ${body.slice(6)}`})
+				}
+				reply('')
+				} else {
+				for (let _ of anu) {
+				sendMess(_.jid, `「 BC GROUP 」\n\nDari Grup : ${groupName}\nPengirim : wa.me/${(sender.split('@')[0])}\nPesan : ${body.slice(6)}`)
+				}
+				reply('Sukses broadcast group')
+				}
+				break
+				case 'kick':
+          if (!isGroup) return reply(mess.only.group)
+          if (!isBotGroupAdmins) return reply(mess.only.adminb)
+          if (!isGroupAdmins) return reply(mess.only.adming)
+          if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('```TAG TARGET YANG INGIN DI KICK```')
+            mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+              if (mentioned.length > 1) {
+              teks = ''
+              for (let _ of mentioned) {
+              teks += `Asek jatah kick, otw kick 🤭 :\n`
+              teks += `@_.split('@')[0]`
+                }
+              mentions(teks, mentioned, true)
+              xynn.groupRemove(from, mentioned)
+                } else {
+              mentions(`Asek jatah kick, otw kick @${mentioned[0].split('@')[0]} 🤭`, mentioned, true)
+              xynn.groupRemove(from, mentioned)
+        }
+                break
+				
+//============== OTHER MENU ==============//
     case 'inspect':
             try {
             if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(mess.Iv)

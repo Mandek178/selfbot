@@ -1,7 +1,7 @@
 {
-  "name": "NAZE",
+  "name": "BRcode",
   "version": "1.0.0",
-  "description": "NAZE",
+  "description": "BRcode",
   "main": "main.js",
   "directories": {
     "lib": "lib"
@@ -46,15 +46,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Naze-dev"
+    "url": "git+https://github.com/BerrRecode"
   },
   "keywords": [
     "Wasu"
   ],
-  "author": "Naze",
+  "author": "BRcode",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Naze-dev"
+    "url": "https://github.com/BerrRecode"
   },
-  "homepage": "https://github.com/Naze-dev"
+  "homepage": "https://github.com/BerrRecode"
 }
