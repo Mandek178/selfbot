@@ -24,6 +24,7 @@ const request = require('request');
 const { spawn, exec, execSync } = require("child_process")
 const fs = require("fs")
 const axios = require("axios")
+const delay = require('delay')
 const ffmpeg = require('fluent-ffmpeg')
 const { EmojiAPI } = require("emoji-api");
 const tik = require('tiktok-scraper-without-watermark')
@@ -53,18 +54,19 @@ const { sleep, isAfk, cekafk, addafk } = require('./lib/offline')
 const ZeksApi = 'fznadmnapi'
 const TobzKey = 'BotWeA'
 
-
+//======== SETTING  ========//
 banChats = true
 offline = false
-targetpc = '6285156724122'
-owner = '6285156724122'
-fake = '⚚𝙁𝙕𝙉𝘽𝙊𝙏𝙕⚚'
+targetpc = '6283852242764'
+owner = '6283852242764'
+fake = '⚚𝙏𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏⚚'
+namabot = '𝙏𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏'
 numbernye = '0'
 waktu = '-'
 alasan = '-'
 
 //==============================================//
-const ownerNumber = [`${6285156724122}@s.whatsapp.net`] //gausah diganti
+const ownerNumber = [`${6283852242764}@s.whatsapp.net`] //gausah diganti
 //=================================================//
 module.exports = xynn = async (xynn, mek) => {
 	try {
@@ -110,7 +112,7 @@ module.exports = xynn = async (xynn, mek) => {
             + 'VERSION:3.0\n'
             + 'FN:Fauzan\n'
             + 'ORG:Pengembang FznBotz;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=6285156724122:+6285156724122\n'
+            + 'TEL;type=CELL;type=VOICE;waid=6283852242764:+6283852242764\n'
             + 'END:VCARD'
 
 
@@ -370,7 +372,7 @@ Prefix : 「 MULTI-PREFIX 」
 ║┃ *${prefix}term* <code>
 ║┃ _x_ <code>
 ║┗━━━━⊱
-╚═══❏ ⚚𝙁𝙯𝙣𝘽𝙤𝙩𝙯⚚══❍`
+╚═══❏ ⚚𝙁𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏══❍`
         	fakestatus(menu)
            	break
     case 'on':
@@ -1321,6 +1323,26 @@ Prefix : 「 MULTI-PREFIX 」
             reply('kirim/reply gambar/video')
             }
             break	
+            case 'bc':
+             if (!isOwner) return reply(mess.only.ownerb)
+				if (args.length < 1) return reply('pesannya mana?')
+				anu = await xynn.chats.all()
+				broadcast = args.join(' ')
+				if (isMedia && !mek.message.videoMessage || isQuotedImage) {
+				const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+				buff = await xynn.downloadMediaMessage(encmedia)
+				for (let _ of anu) {
+			    await require('delay')(3000)
+				await xynn.sendMessage(_.jid, buff, image, {caption: `「 ${namabot} BROADCAST 」\n\n${broadcast}`, contextInfo: { mentionedJid: [sender] }})
+				}
+				} else {
+				for (let _ of anu) {
+				await require('delay')(3000)
+				await xynn.sendMessage(_.jid, `「 ${namabot} BROADCAST 」\n\n${broadcast}`, text, { contextInfo: { mentionedJid: [sender] }})
+				}
+				reply('Suksess broadcast')
+				}
+			    break
     case 'inspect':
             try {
             if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(mess.Iv)
