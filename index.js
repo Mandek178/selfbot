@@ -61,9 +61,9 @@ TobzKey = 'BotWeA'
 banChats = true
 offline = false
 targetpc = '6283852242764'
-owner = '6285156724122'
-fake = '⚚𝙏𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏⚚'
-namabot = '𝙏𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏'
+owner = '6289652872913
+fake = 'SERVER•BOTZ'
+namabot = 'SERVER•BOTZ'
 numbernye = '0'
 waktu = '-'
 alasan = '-'
@@ -382,7 +382,7 @@ Prefix : 「 MULTI-PREFIX 」
 ║┃ *${prefix}term* <code>
 ║┃ _x_ <code>
 ║┗━━━━⊱
-╚═══❏ ⚚𝙁𝙚𝙆𝙖𝙅𝙚 𝘽𝙊𝙏══❍`
+╚═══❏ SERVER•BOTZ❍`
         	fakestatus(menu)
            	break
     case 'on':
@@ -413,7 +413,7 @@ Prefix : 「 MULTI-PREFIX 」
             case 'creator':
                   xynn.sendMessage(from, {displayname: "Fauzan", vcard: vcard}, MessageType.contact, { quoted: mek})
                   xynn.sendMessage(from, 'Tuh kontak ownerku ಠ ͜ʖ ಠ ,Jangan Lupa Save Ya :v',MessageType.text, { quoted: mek} )
-                  xynn.sendMessage(from, MessageType.image, {quoted: mek, caption: '*INSTAGRAM:*\n*@efzyn_*'})
+                  xynn.sendMessage(from, MessageType.image, {quoted: mek, caption: '*INSTAGRAM:*\n*@bocah_stick*'})
                   break
     case 'kontag':
             if (!mek.key.fromMe) return reply('SELF-BOT')
@@ -947,7 +947,7 @@ Prefix : 「 MULTI-PREFIX 」
             ytresult += '❏ Durasi: ' + video.timestamp + '\n'
             ytresult += '❏ Upload: ' + video.ago + '\n________________________\n\n'
     		});
-    		ytresult += '◩ *SELF-BOT*'
+    		ytresult += '◩ *SERVER•BOTZ*'
     		await fakethumb(tbuff,ytresult)
 			break
 	case 'setreply':
